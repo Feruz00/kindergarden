@@ -8,7 +8,7 @@ interface Props{
     where: string
 }
 const CardView:React.FC<Props> = ({title, icon, description, where = ''}) => {
-    const { ref, inView, entry } = useInView({
+    const { ref, inView } = useInView({
         threshold: 0.5, 
     });
     // w-1/4 xl:w-2/5 lg:w-10/12  
