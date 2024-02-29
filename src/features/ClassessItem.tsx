@@ -25,7 +25,7 @@ const ClassessItem:React.FC<Props> = ({img, title, description, data, where}) =>
       ref={ref}
     >
       <img src={img} alt="surat " className=" object-fill w-full" />
-      <h1 className='uppercase text-2xl py-4 lg:py-2 lg:text-base'>{title} </h1>
+      <h1 className='uppercase text-2xl py-4 lg:py-2 lg:text-base text-green-700 font-semibold'>{title} </h1>
       <p className='text-center px-2 text-zinc-500 py-4 lg:py-2 w-full xl:text-sm lg:text-xs h-1/2'>
         {description}
       </p>

@@ -7,11 +7,12 @@ import AboutUs from '../components/AboutUs';
 import Classes from '../components/Classes';
 import Education from '../components/Education';
 import Teachers from '../components/Teachers';
+import Additional from '../components/Additional';
 const Dashboard = () => {
   return (
-    <div className='flex flex-col font-poppins max-w-[100vw] overflow-hidden'>
+    <div className='flex flex-col font-nunito max-w-[100vw] overflow-hidden '>
       {/* Banner */}
-      <Container className="bg-[#128e1e] flex items-center justify-center">
+      <Container className="bg-green-800 flex items-center justify-center ">
         <div className="w-[1500px] xl:w-full flex flex-row items-center py-20 px-5 lg:px-4 lg:flex-col lg:gap-4 md:px-6">
           <div className="flex flex-col justify-start flex-1 items-start gap-5">
             <div className='flex gap-5 flex-col'>
@@ -19,7 +20,7 @@ const Dashboard = () => {
               <h1 className='text-7xl xl:text-5xl text-white font-sans font-semibold sm:text-xl'>mekdebe çenli {<br/>} çagalar edaralary</h1>
               <p className='text-lg xl:text-base text-white'>bilen maşgalanyň, umumybilim edaralarynyň we jemgyýetçilik guramalarynyň sazlaşykly aragatnaşygyny üpjün etmek bolup durýar.</p>
             </div>
-            <button className='bg-green-800 text-md flex items-center justify-center text-white px-6 py-2 rounded-full'>
+            <button className='bg-green-700 hover:bg-green-600 transition-all duration-500 text-md flex items-center justify-center text-white px-6 py-2 rounded-full'>
               Içgin öwrenmek
             </button>
           </div>
@@ -81,6 +82,8 @@ const Dashboard = () => {
 
        <Education />
        <Teachers />
+
+      <Additional />
     </div>
   );
 }
