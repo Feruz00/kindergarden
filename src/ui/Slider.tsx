@@ -5,7 +5,7 @@ interface Props{
   data:{
     review:string, 
     name: string,
-    img:string,
+    url:string,
     job:string
   }[]
 }
@@ -19,7 +19,7 @@ const Carousel:React.FC<Props> = ({data}) => {
       dots: false,
       arrows: false,
       infinite: true,
-      speed: 200,
+      speed: 500,
       slidesToShow: 3,
       slidesToScroll: 1,
       responsive: [
@@ -69,7 +69,7 @@ const Carousel:React.FC<Props> = ({data}) => {
               <div className="mx-auto px-8 2xl:px-4 py-4 2xl:py-4 max-w-md bg-white rounded-lg shadow-md">
               <p className="text-gray-800 text-base 2xl:text-sm">{item.review}</p>
               <div className="flex items-center mt-4">
-                  <img src={item.img} alt={item.name} className="w-12 h-12 object-cover rounded-full shadow-md" />
+                  <img crossOrigin="anonymous" src={`${process.env.SERVER}/${item.url}`} alt={item.name} className="w-12 h-12 object-cover rounded-full shadow-md" />
                   <div className="ml-2">
                   <h2 className="text-lg font-semibold text-gray-700">{item.name}</h2>
                   <p className="text-sm text-gray-600">{item.job}</p>

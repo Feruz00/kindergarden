@@ -1,14 +1,17 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 
-interface Props{
-    data: {
-        url: string,
-        name: string,
-        job:string
-    }[]
+type Teacher = {
+    name: string;
+    _id:string;
+    url:string;
+    description:string;
+    job:string
 }
 
+type Props = {
+    data: Teacher[]
+}
 
 const Teacher:React.FC<Props> = ({data}) => {
     const {ref, inView} = useInView({
@@ -28,11 +31,11 @@ const Teacher:React.FC<Props> = ({data}) => {
     >
     {
         data.map(i=>(
-            <div key={i.url}
+            <div key={i._id}
                 className='flex flex-col gap-1 w-44 items-center'
             >
                 <div className=' h-40 w-40 md:h-20 md:w-20 sm:h-11 sm:w-11 flex justify-center items-center overflow-hidden rounded-full'>
-                    <img src={i.url} alt={i.name} className='w-full h-full object-cover' />
+                    <img  crossOrigin='anonymous' src={`${process.env.SERVER}/${i.url}`} alt={i.name} className='w-full h-full object-cover' />
                 </div>
                 <p className='text-lg md:text-base'>{i.name}</p>
                 <p className='text-sm text-gray-600 italic md:text-xs'>{i.job}</p>

@@ -18,7 +18,8 @@ const Dashboard = () => {
             <div className='flex gap-5 flex-col'>
               <h2 className='text-2xl xl:text-xl text-white font-semibold sm:text-base'>Çagalary terbiýelemekde hem-de bilim bermekde</h2>
               <h1 className='text-7xl xl:text-5xl text-white font-sans font-semibold sm:text-xl'>mekdebe çenli {<br/>} çagalar edaralary</h1>
-              <p className='text-lg xl:text-base text-white'>bilen maşgalanyň, umumybilim edaralarynyň we jemgyýetçilik guramalarynyň sazlaşykly aragatnaşygyny üpjün etmek bolup durýar.</p>
+              <p className='text-lg xl:text-base text-white'>bilen maşgalanyň, 
+              umumybilim edaralarynyň we jemgyýetçilik guramalarynyň sazlaşykly aragatnaşygyny üpjün etmek bolup durýar.</p>
             </div>
             <button className='bg-green-700 hover:bg-green-600 transition-all duration-500 text-md flex items-center justify-center text-white px-6 py-2 rounded-full'>
               Içgin öwrenmek

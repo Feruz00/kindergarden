@@ -1,12 +1,22 @@
 // import React from 'react'
 
-import Add1 from '../assets/add-1.jpg'
-import Add2 from '../assets/add-2.jpg'
-import Add3 from '../assets/add-3.jpg'
+// import Add1 from '../assets/add-1.jpg'
+// import Add2 from '../assets/add-2.jpg'
+// import Add3 from '../assets/add-3.jpg'
+// import { useGetReviews } from '../services/useReviews'
+import { useGetSubjects } from '../services/useSubjects'
 import Card from "../ui/Card"
+import Loader from '../ui/Loader'
+
 
 
 const Additional = () => {
+    const {isLoading, subjects} = useGetSubjects()
+    const design = (i:number)=>{
+        if(i%3 == 1) return '-translate-x-10'
+        else if(i%3 == 2) return 'translate-y-10'
+        else return 'translate-x-10'
+    }
   return (
     <div className="lg:min-h-screen bg-zinc-50 flex justify-center items-center md:min-h-screen">
         <div className="w-[1500px] 2xl:w-full 2xl:px-5 flex flex-col items-center py-10 gap-10 h-full">
@@ -22,7 +32,21 @@ const Additional = () => {
                 Okuwlarymyz bilen içgin öwrenmek isleseňiz!
             </h1>
             <div className="w-full flex flex-row md:flex-col flex-wrap justify-evenly lg:gap-10 md:gap-1 md:items-center">
-                <Card 
+                {
+                    isLoading ? <Loader />
+                    : subjects.data.map((i, index)=>(
+                        <Card 
+                            key={i._id}
+                            url={i.url}
+                            title={i.title}
+                            description={i.description}
+                            design={design(index+1)}
+                        />
+                    ))
+                }
+                {/* <Loader /> */}
+
+                {/* <Card 
                     url={Add1}
                     title='SURAT ÇEKMEK'
                     description='Surat çekmek üçin albom 40 list. Albomda galamlar, flomaster we boýaglar bilen surat çekmek üçin niýetlenen. Albomlarda surat çekmek hemmeler üçin gyzykly we döredijilik güýmenjesi bolýar.'
@@ -43,7 +67,7 @@ const Additional = () => {
                     description='Häzirki wagtda daşary ýurt dillerini bilmek dünýä ylmyna aralaşmagyň möhüm şertleriniň biridir. Islendik daşary ýurt dilini öwrenmek, edil biziň pikir edişimiz ýaly, beýle bir kyn hem däl we köp wagty talap etmeýär.'
                 
                     design="translate-y-10"
-                />
+                /> */}
                 
                     
             </div>

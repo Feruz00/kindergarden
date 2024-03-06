@@ -54,7 +54,9 @@ const Navbar = () => {
                     {to:'/about', text:'Biz barada'}, 
                     {to:'/teachers', text:'Mugallymlar'},
                     {to:'/gallery', text:'Jadyly sandyk'},
-                    {to:'/other', text:'Goşmaça'}
+                    {to:'/other', text:'Goşmaça'},
+                    {to:'/login', text:'Ulgama gir'},
+                    
                     ].map(renderNavLink)
                 }
                 
@@ -70,7 +72,8 @@ const Navbar = () => {
                             {to:'/about', text:'Biz barada'}, 
                             {to:'/teachers', text:'Mugallymlar'},
                             {to:'/gallery', text:'Jadyly sandyk'},
-                            {to:'/other', text:'Goşmaça'}
+                            {to:'/other', text:'Goşmaça'},
+                            {to:'/login', text:'Ulgama gir'},
                             ].map(renderResNavLink)
                         }
                     </ul>

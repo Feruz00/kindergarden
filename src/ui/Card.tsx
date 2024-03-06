@@ -21,7 +21,7 @@ const Card:React.FC<Props> = ({url, title, description, design}) => {
         ref={ref}
     >
         <div className="w-full">
-            <img src={url} className="w-full object-cover" />
+            <img crossOrigin='anonymous' src={`${process.env.SERVER}/${url}`} className="w-full object-cover" />
         </div>
         <h1
             className="text-xl text-green-700 font-medium"
