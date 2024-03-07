@@ -1,7 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import { getReviews } from "../api/apireviews";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createReview, deleteReview, getReviews, updatePhotoReview, updateReviewInfo } from "../api/apiReviews";
+import toast from "react-hot-toast";
 
-type Review = {
+
+export type Review = {
     name: string;
     _id:string;
     url:string;
@@ -20,4 +22,78 @@ export function useGetReviews(){
         queryFn: getReviews
     })
     return {reviews: reviews as Props, isLoading}
+}
+export function useDeleteReview(){
+    
+    const queryClient = useQueryClient()
+    
+    const {isPending, mutate: deleteReviewFn} = useMutation({
+        mutationFn: (id:string) => deleteReview(id),
+        onSuccess: ()=>{
+            toast.success('Üstünlikli pozuldy')
+            queryClient.invalidateQueries({
+                queryKey: ['reviews']
+            })
+        },
+        onError: ()=>{
+            toast.error('Näsazlyklar ýüz berdi')
+        }
+    })
+    return {isPending, deleteReviewFn}
+}
+
+export function useUpdateReviewInfo(){
+    
+    const queryClient = useQueryClient()
+    // const {id} = useParams()
+    const {isPending, mutate: updateReviewInfoFn } = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: Review }) => updateReviewInfo(id, data),
+        onSuccess: ()=>{
+            toast.success('Üstünlikli sazlanyldy')
+            queryClient.invalidateQueries({
+                queryKey: ['reviews']
+            })
+        },
+        onError: ()=>{
+            toast.error('Näsazlyklar ýüz berdi')
+        }
+    })
+    return {isPending, updateReviewInfoFn}
+}
+
+export function useUpdatePhotoReview(){
+    
+    const queryClient = useQueryClient()
+    const {isPending, mutate: updatePhotoReviewFn } = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: FormData }) => updatePhotoReview(id, data),
+        onSuccess: ()=>{
+            toast.success('Üstünlikli sazlanyldy')
+            queryClient.invalidateQueries({
+                queryKey: ['reviews']
+            })
+        },
+        onError: ()=>{
+            toast.error('Näsazlyklar ýüz berdi')
+        }
+    })
+    return {isPending, updatePhotoReviewFn}
+}
+
+export function useCreateReview(){
+    
+    const queryClient = useQueryClient()
+    // const {id} = useParams()
+    const {isPending, mutate: createReviewFn } = useMutation({
+        mutationFn: (data:FormData) => createReview( data),
+        onSuccess: ()=>{
+            toast.success('Üstünlikli döredildi')
+            queryClient.invalidateQueries({
+                queryKey: ['reviews']
+            })
+        },
+        onError: ()=>{
+            toast.error('Näsazlyklar ýüz berdi')
+        }
+    })
+    return {isPending, createReviewFn}
 }

@@ -21,7 +21,11 @@ import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './ui/ProtectedRoute';
 import AdminAppLayout from './components/AdminAppLayout';
 import AuthContext from './context/AuthContext';
-import Educations from './features/admin/Education/Educations';
+import Educations from './features/admin/Educations';
+import Teachers from './features/admin/Teachers';
+import Reviews from './features/admin/Reviews';
+import Subjects from './features/admin/Subjects';
+import Settings from './features/admin/Settings';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -61,15 +65,15 @@ const App: React.FC = () => {
             </ProtectedRoute>}>
               <Route index element={ <Navigate to='ab' replace />  } />
               <Route path='ab' element={ <Educations /> } />
-              <Route path='teachers' element={ <h1>Ab</h1> } />
-              <Route path='reviews' element={ <h1>Ab</h1> } />
-              <Route path='educations' element={ <h1>Ab</h1> } />
+              <Route path='teachers' element={ <Teachers/> } />
+              <Route path='reviews' element={ <Reviews />  } />
+              <Route path='educations' element={ <Subjects /> } />
               <Route path='gallery' element={ <h1>Ab</h1> } />
-              <Route path='settings' element={ <h1>Ab</h1> } />
+              <Route path='settings' element={ <Settings /> } />
               
               
             </Route>  
-          <Route path='pdf' element={<Flipbook pdfUrl={Pdf} />} />
+          {/* <Route path='pdf' element={<Flipbook pdfUrl={Pdf} />} /> */}
         </Routes>
       </BrowserRouter>
       <Toaster position='top-center' gutter={12} containerStyle={{margin:'8px'}}

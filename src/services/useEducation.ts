@@ -78,7 +78,7 @@ export function useUpdatePhotoEduction(){
             toast.error('Näsazlyklar ýüz berdi')
         }
     })
-    return {isPending, updatePhotoEducationFn, useUpdatePhotoEduction}
+    return {isPending, updatePhotoEducationFn}
 }
 
 export function useCreateEducation(){
@@ -88,7 +88,7 @@ export function useCreateEducation(){
     const {isPending, mutate: createEducationFn } = useMutation({
         mutationFn: (data:FormData) => createEducation( data),
         onSuccess: ()=>{
-            toast.success('Üstünlikli sazlanyldy')
+            toast.success('Üstünlikli döredildi')
             queryClient.invalidateQueries({
                 queryKey: ['educations']
             })

@@ -19,7 +19,7 @@ const Sidebar = () => {
                 [{value: 'Ýörite okuwlar', url: 'ab'}, 
                 {value: 'Mugallymlar', url:'teachers'},
                 { value: 'Bildiren pikirler', url:'reviews'}, 
-                {value:'Öz okuwlarymyz', url: 'eduactions'}, 
+                {value:'Öz okuwlarymyz', url: 'educations'}, 
                 {value: 'Jadyly sandyk', url: 'gallery'},
                 {value: 'Sazlama', url: 'settings'},
             

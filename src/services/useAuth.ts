@@ -28,7 +28,7 @@ export function useLogin(){
     const queryClient = useQueryClient()
     
     const {mutate: login, isPending} = useMutation({
-        mutationKey: ['login', 'current-user'],
+        mutationKey: ['user'],
         mutationFn: loginApi,
         onSuccess: (user)=>{
             // console.log(user)
@@ -81,7 +81,7 @@ export const useChangeInfo = ()=>{
             queryClient.setQueryData(['profile'],user)
             toast.success('Maglumatlaryňyz üstünlikli üýtgedildi')
             queryClient.invalidateQueries({
-                queryKey: [ 'profile' , 'user' ]
+                queryKey: [  'user' ]
             })
 
         },

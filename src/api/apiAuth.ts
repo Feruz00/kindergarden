@@ -52,9 +52,9 @@ const changeInfoApi = (d:any)=>{
     } )
 }
 
-const uploadPhotoApi = (d:any)=>{
+const uploadPhotoApi = (d:FormData)=>{
     return new Promise( async (resolve, reject)=>{
-        await axios.put(`${server}/api/auth/img/`,d, {
+        await axios.patch(`${server}/api/auth/img/`,d, {
             withCredentials: true,
             headers: { "Content-Type": "multipart/form-data" },
         })
