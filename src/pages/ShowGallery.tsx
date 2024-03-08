@@ -1,11 +1,11 @@
-import React from 'react'
+import PdfViewer from '../components/PDFViewer'
 import { useGetOneGallery } from '../services/useGallery'
 import Loader from '../ui/Loader'
-import PDFViewer from '../ui/PDFViewer'
+// import YouTubePlayer from '../ui/VideoPlayer'
 
 const ShowGallery = () => {
     const {isLoading, gallery} = useGetOneGallery()
-    console.log(gallery)
+    // console.log(gallery)
   return (
     <div
         className='min-h-[calc(100vh-5rem)] w-full flex flex-col justify-center items-center'
@@ -15,11 +15,9 @@ const ShowGallery = () => {
             {
                 isLoading ? <Loader />
                 :<div>
-                    <h1>{gallery.data.title}</h1>
-                    <PDFViewer 
-                        url={gallery.data.url}
-                    />
-                </div>
+                <h1>{gallery.data.title}</h1>
+                <PdfViewer pdfUrl={`${process.env.SERVER}/${gallery.data.url}`} />
+            </div>
             }
         </div>
     </div>

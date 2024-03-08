@@ -11,11 +11,11 @@ import Dashboard from './pages/Dashboard';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 // import PDFViewer from './components/PDFViewer';
-import Pdf from './assets/programmingwithc.pdf'
-import Flipbook from './components/Flipbook';
+// import Pdf from './assets/programmingwithc.pdf'
+// import Flipbook from './components/Flipbook';
 import { pdfjs } from 'react-pdf';
 import Gallery from './pages/Gallery';
-import ShowGallery from './pages/ShowGallery';
+// import ShowGallery from './pages/ShowGallery';
 import Login from './pages/Login';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './ui/ProtectedRoute';
@@ -26,6 +26,12 @@ import Teachers from './features/admin/Teachers';
 import Reviews from './features/admin/Reviews';
 import Subjects from './features/admin/Subjects';
 import Settings from './features/admin/Settings';
+import GalleryTypes from './features/admin/GalleryTypes';
+import GalleryAdmin from './features/admin/Gallery';
+import About from './pages/About';
+import TeachersView from './pages/Teachers';
+import Goshmaca from './pages/Goshmaca';
+import ShowTeacher from './pages/ShowTeacher';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -50,13 +56,15 @@ const App: React.FC = () => {
         <Routes>
           <Route element={ <AppLayout /> } >
             <Route index element={<Dashboard />} />
-            <Route path='about' element={<p>Feruz</p>} />
-            <Route path='classes' element={<p>Feruz</p>} />
-            <Route path='teachers' element={<p>Feruz</p>} />
+            <Route path='about' element={ <About /> } />
+            {/* <Route path='classes' element={<p>Feruz</p>} /> */}
+            <Route path='teachers' element={<TeachersView />} />
+            <Route path='teachers/:id' element={<ShowTeacher />} />
+            
             <Route path='gallery' element={ <Gallery /> } />
-            <Route path='gallery/:galleryId' element={ <ShowGallery /> } />
+            {/* <Route path='gallery/:galleryId' element={ <ShowGallery /> } /> */}
             <Route path='login' element={<Login />} />
-            <Route path='other' element={<p>Feruz</p>} />
+            <Route path='other' element={ <Goshmaca /> } />
 
             
           </Route>
@@ -66,9 +74,12 @@ const App: React.FC = () => {
               <Route index element={ <Navigate to='ab' replace />  } />
               <Route path='ab' element={ <Educations /> } />
               <Route path='teachers' element={ <Teachers/> } />
+
               <Route path='reviews' element={ <Reviews />  } />
               <Route path='educations' element={ <Subjects /> } />
-              <Route path='gallery' element={ <h1>Ab</h1> } />
+              <Route path='types' element={ <GalleryTypes /> } />
+              
+              <Route path='gallery' element={ <GalleryAdmin />} />
               <Route path='settings' element={ <Settings /> } />
               
               

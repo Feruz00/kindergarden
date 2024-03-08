@@ -1,5 +1,6 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
+import { Link } from 'react-router-dom';
 
 type Teacher = {
     name: string;
@@ -37,7 +38,9 @@ const Teacher:React.FC<Props> = ({data}) => {
                 <div className=' h-40 w-40 md:h-20 md:w-20 sm:h-11 sm:w-11 flex justify-center items-center overflow-hidden rounded-full'>
                     <img  crossOrigin='anonymous' src={`${process.env.SERVER}/${i.url}`} alt={i.name} className='w-full h-full object-cover' />
                 </div>
-                <p className='text-lg md:text-base'>{i.name}</p>
+                <Link to={i._id}>
+                    <p className='text-lg md:text-base'>{i.name}</p>
+                </Link>
                 <p className='text-sm text-gray-600 italic md:text-xs'>{i.job}</p>
             </div>
         ))

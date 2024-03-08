@@ -1,6 +1,7 @@
 import React from 'react'
 import { useInView } from 'react-intersection-observer'
 // import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 interface Props{
     _id:string,

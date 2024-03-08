@@ -13,6 +13,7 @@ const Classes = () => {
         else if(i%3 == 2) return 'translate-y-10'
         else return 'translate-x-10'
     }
+
   return (
     <div className='flex items-center justify-center bg-zinc-50  min-h-screen'>
     <div className='w-[1500px] 2xl:w-full 2xl:px-10 py-6 flex flex-col items-center h-full gap-6'>

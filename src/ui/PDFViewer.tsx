@@ -1,23 +1,49 @@
-import { Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import React, { useState, useEffect } from 'react';
+import { Document, Page } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import pdfjs from 'pdfjs-dist';
 
-interface Props{
-    url:string
-}
-const PDFViewer:React.FC<Props> = ({url}) => {
-    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+// Initialize PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-    return (
-        <div style={{ height: '750px' }} >
-            <Viewer
-                fileUrl={`${process.env.SERVER}/${url}`}
-                plugins={[defaultLayoutPluginInstance]}
-                
-            />
-        </div>
-    );
-}
+const FlipbookViewer: React.FC<{ pdfUrl: string }> = ({ pdfUrl }) => {
+  const [numPages, setNumPages] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
-export default PDFViewer
+  useEffect(() => {
+    // Load PDF information
+    const loadingTask = pdfjs.getDocument(pdfUrl);
+    loadingTask.promise.then(pdf => {
+      setNumPages(pdf.numPages);
+    });
+  }, [pdfUrl]);
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
+
+  const nextPage = () => {
+    setPageNumber(prevPageNumber => prevPageNumber + 1);
+  };
+
+  const prevPage = () => {
+    setPageNumber(prevPageNumber => prevPageNumber - 1);
+  };
+
+  return (
+    <div>
+      <Document
+        file={pdfUrl}
+        onLoadSuccess={onDocumentLoadSuccess}
+      >
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <div>
+        <button onClick={prevPage} disabled={pageNumber <= 1}>Previous</button>
+        <button onClick={nextPage} disabled={pageNumber >= (numPages || 1)}>Next</button>
+      </div>
+    </div>
+  );
+};
+
+export default FlipbookViewer;

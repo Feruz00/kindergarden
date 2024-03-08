@@ -28,4 +28,59 @@ const getOneGallery = (p:string )=>{
         }
     } )
 }
-export {getGallery, getOneGallery}
+
+const deleteGallery = (d:string)=>{
+    return new Promise( async (resolve, reject)=>{
+        try {
+            const res = await axios.delete(`${server}/api/gallery/${d}`, {withCredentials:true});
+            resolve(res.data);
+        } catch (err) {
+            reject(err);
+        }
+    } )
+}
+
+const updateGallery = (d:string, q:any)=>{
+    return new Promise( async (resolve, reject)=>{
+        try {
+            const res = await axios.patch(`${server}/api/gallery/${d}`, q, {withCredentials:true, });
+            resolve(res.data);
+        } catch (err) {
+            reject(err);
+        }
+    } )
+}
+
+const createGallery = (d:FormData)=>{
+    return new Promise( async (resolve, reject)=>{
+        try {
+            const res = await axios.post(`${server}/api/gallery/`, d, {withCredentials:true, });
+            resolve(res.data);
+        } catch (err) {
+            reject(err);
+        }
+    } )
+}
+const updatePhotoGallery = (id:string,d:FormData)=>{
+    console.log(d.values)
+    return new Promise( async (resolve, reject)=>{
+        await axios.patch(`${server}/api/gallery/${id}/image`,d, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true
+        })
+            .then( res=>resolve(res.data) )
+            .catch( err=>reject(err) )
+    } )
+}
+const updateFileGallery = (id:string,d:FormData)=>{
+    
+    return new Promise( async (resolve, reject)=>{
+        await axios.patch(`${server}/api/gallery/${id}/file`,d, {
+            headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true
+        })
+            .then( res=>resolve(res.data) )
+            .catch( err=>reject(err) )
+    } )
+}
+export {getGallery, getOneGallery, deleteGallery, updateGallery, createGallery, updatePhotoGallery, updateFileGallery}

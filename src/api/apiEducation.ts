@@ -14,7 +14,7 @@ const getEducations = ()=>{
 }
 
 const deleteEducation = (d:string)=>{
-    console.log(d)
+    // console.log(d)
     return new Promise( async (resolve, reject)=>{
         try {
             const res = await axios.delete(`${server}/api/education/${d}`, {withCredentials:true});

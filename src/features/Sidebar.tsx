@@ -20,7 +20,9 @@ const Sidebar = () => {
                 {value: 'Mugallymlar', url:'teachers'},
                 { value: 'Bildiren pikirler', url:'reviews'}, 
                 {value:'Öz okuwlarymyz', url: 'educations'}, 
+                {value: 'Toplumlar', url: 'types'},
                 {value: 'Jadyly sandyk', url: 'gallery'},
+
                 {value: 'Sazlama', url: 'settings'},
             
             ]

@@ -16,6 +16,12 @@ type Props = {
     results: number;
     data: Teacher[]
 }
+type Prop = {
+    status: string;
+    results: number;
+    data: Teacher
+}
+
 export function useGetTeachers(){
     const {isLoading, data: teachers} = useQuery({
         queryKey:['teachers'],
@@ -30,7 +36,7 @@ export function useGetTeacher(){
         queryKey:[`teacher-${id}`],
         queryFn:()=> getTeacher(id as string)
     })
-    return {teacher, isLoading}
+    return {teacher:teacher as Prop , isLoading}
 }
 export function useDeleteTeacher(){
     

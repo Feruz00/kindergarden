@@ -27,4 +27,6 @@
   .slick-dots li.slick-active button {
     background-color: #4A5568; /* Set active dot color */
   }
-  
+  .ant-btn-primary{
+    color:#4A5568;
+  }

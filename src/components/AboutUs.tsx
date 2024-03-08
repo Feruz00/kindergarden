@@ -40,7 +40,7 @@ const AboutUs = () => {
         <div className='flex flex-row mt-5'>
           <div className='flex-1 flex flex-col justify-between items-start'>
           <img src={Img3} alt='surat' className='w-1/2 object-cover' />
-          <button className='px-10 py-2 text-lg text-white bg-green-700 rounded-full hover:bg-green-600 transition-all duration-300'>Gatnaşmak</button>
+          {/* <button className='px-10 py-2 text-lg text-white bg-green-700 rounded-full hover:bg-green-600 transition-all duration-300'>Gatnaşmak</button> */}
           </div>
           <ul className='flex-1 list-none text-gray-500  '>
             {

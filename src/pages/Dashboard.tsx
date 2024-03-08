@@ -3,12 +3,15 @@ import Img1 from '../assets/dashboard-1.jpg'
 import CardView from '../components/CardView';
 import Container from '../ui/Container';
 import { FaBook, FaChalkboardUser, FaChartGantt, FaClipboardList, FaMasksTheater } from 'react-icons/fa6';
-import AboutUs from '../components/AboutUs';
-import Classes from '../components/Classes';
-import Education from '../components/Education';
-import Teachers from '../components/Teachers';
+
 import Additional from '../components/Additional';
+import { useEffect } from 'react';
 const Dashboard = () => {
+
+  useEffect(()=>{
+    document.title='Baş sahypa'
+  }, [])
+
   return (
     <div className='flex flex-col font-nunito max-w-[100vw] overflow-hidden '>
       {/* Banner */}
@@ -78,11 +81,11 @@ const Dashboard = () => {
             </div>
         </div>
 
-       <AboutUs />
-       <Classes />
+       {/* <AboutUs /> */}
+       {/* <Classes /> */}
 
-       <Education />
-       <Teachers />
+       {/* <Education /> */}
+       {/* <Teachers /> */}
 
       <Additional />
     </div>

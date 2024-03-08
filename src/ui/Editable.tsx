@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { Input, Modal } from 'antd';
+import { Input, Modal, Select } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import { RxPencil2 } from 'react-icons/rx';
 
@@ -11,6 +11,8 @@ interface EditModalProps<T> {
     label: string;
     name: keyof T;
     isTextArea: boolean;
+    isSelect?:boolean;
+    options?:{value: string, text: string}[];
     row?: number; // Make row optional
     rules: Record<string, unknown>;
   }[];
@@ -49,7 +51,13 @@ function EditModal<T>({ title, defaultValues, fields, onSubmit, isPending,id }: 
                                 // @ts-ignore
                                 control={control}
                                 render={({ field }) => (
-                                    
+                                    i.isSelect ?  <Select {...field}>
+                                        {
+                                            i.options?.map(i=>(
+                                                <Select.Option key={i.value} value={i.value} >{i.text}</Select.Option>
+                                            ))
+                                        }
+                                  </Select>:
                                     i.isTextArea ? <Input.TextArea rows={i.row} className='col-span-6' {...field}  /> : <Input className='col-span-6' {...field} />
                                   )}
                             />

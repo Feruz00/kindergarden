@@ -13,6 +13,8 @@ const ClassessItem:React.FC<Props> = ({img, title, description, link, where}) =>
   const { ref, inView } = useInView({
     threshold: 0.5, 
 });
+const formattedLink = link.startsWith('http') ? link : `http://${link}`;
+
   return (
     <div className={`w-full h-full bg-zinc-100 border border-zinc-200 rounded-lg flex flex-col gap-2 items-center overflow-hidden
       transition-all duration-700
@@ -29,7 +31,7 @@ const ClassessItem:React.FC<Props> = ({img, title, description, link, where}) =>
       
       <a className='px-8 py-2 bg-green-600 rounded-full my-2 text-white hover:bg-green-500 transition-all duration-500'
       
-        href={link}
+        href={formattedLink}
       >Ýazylmak</a>  
     </div> 
     )

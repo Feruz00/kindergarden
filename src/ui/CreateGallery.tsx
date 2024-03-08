@@ -7,7 +7,6 @@ interface CreateItemProps<T> {
     onSubmit: (data: FormData) => void;
     title: string;
     buttonText: string;
-    noFile?:boolean;
     fields: { 
         name: keyof T; 
         label: string; 
@@ -20,7 +19,7 @@ interface CreateItemProps<T> {
     isPending: boolean;
 }
 
-const CreateItem = <T,>({ onSubmit, title, buttonText, fields,...other }: CreateItemProps<T>) => {
+const CreateGallery = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps<T>) => {
     // @ts-ignore
     const { reset, handleSubmit, control, register, formState: { errors }, watch } = useForm<T>();
     const [open, setOpen] = useState(false);
@@ -37,16 +36,12 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields,...other }: Create
             if(typeof value === 'string') formData.append(key, value as string)
         } 
         );
-        if(!other.noFile ) {
-            formData.append('file', data.file[0]);
-        
-            onSubmit(formData);
-        }
-        else{
-            // @ts-ignore
-            onSubmit(data)
-        }
-        
+        // @ts-ignore
+        formData.append('picture', data.picture[0]);
+        formData.append('file', data.file[0]);
+        // console.log(data)
+        // console.log(data.file[0], data.picture[0])
+        onSubmit(formData)
         handleClose()
     };
 
@@ -80,25 +75,37 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields,...other }: Create
                 />
                 </div>
             ))}
-            {
-                !other.noFile && (
-                    <>
-                    <FileUploader
-                        name="file"
-                        register={register}
-                        multiple={false}
-                        validation={{ validate: (val) => val?.length > 0 || 'Surat faýl gerek' }}
-                        accepted='image/*'
-                        id="file"
-                        disabled={false} // Set to false because disabling it here would prevent file upload
-                        watch={watch}
-                    />
-                    {/* @ts-ignore */}
-                    {errors?.file?.message && <p className='text-xs font-medium text-red-700'>  {errors?.file?.message} </p>}
-                    </>
-                )
-            }
-            
+            <div className='grid grid-cols-[7rem_1fr]'>
+                <label className='col-span-1 font-medium whitespace-nowrap'>Surady saýlaň</label>
+                <FileUploader
+                    name="picture"
+                    register={register}
+                    multiple={false}
+                    validation={{ validate: (val) => val?.length > 0 || 'Surat faýl gerek' }}
+                    accepted='image/*'
+                    id="picture"
+                    disabled={false} // Set to false because disabling it here would prevent file upload
+                    watch={watch}
+                />
+                {/* @ts-ignore */}
+                {errors?.picture?.message && <p className='text-xs font-medium text-red-700'>  {errors?.picture?.message} </p>}
+            </div>
+            <div className='grid grid-cols-[7rem_1fr]'>
+                <label className='col-span-1 font-medium whitespace-nowrap'>Faýly saýlaň</label>
+                <FileUploader
+                    name="file"
+                    register={register}
+                    multiple={false}
+                    validation={{ validate: (val) => val?.length > 0 || 'Faýl gerek' }}
+                    accepted=".docx,.pptx,.pdf" //,.mp3,.wav,.ogg,.mp4,.mov,.avi
+                    id="file"
+                    disabled={false} // Set to false because disabling it here would prevent file upload
+                    watch={watch}
+                />
+                {/* @ts-ignore */}
+                {errors?.file?.message && <p className='text-xs font-medium text-red-700'>  {errors?.file?.message} </p>}
+            </div>
+        
             <button type='submit' className='bg-blue-500 text-white px-4 py-2 rounded' >Döret</button>
             </form>
         </Modal>
@@ -106,4 +113,4 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields,...other }: Create
     );
 };
 
-export default CreateItem;
+export default CreateGallery;
