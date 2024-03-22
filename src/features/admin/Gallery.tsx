@@ -7,7 +7,7 @@ import { useCreateGallery, useDeleteGallery, useGetGallery, useUpdateGallery, us
 import { useGetGalleryTypes } from '../../services/useGalleryTypes'
 import EditModal from '../../ui/Editable'
 import UpdatePhotoModal from '../../ui/UpdatePhotoModal'
-import CreateGallery from '../../ui/CreateGallery'
+import CreateItem from '../../ui/CreateItem'
 
 const GalleryAdmin = () => {
     const {isLoading, galleries} = useGetGallery()
@@ -37,18 +37,25 @@ const GalleryAdmin = () => {
                 Jadyly sandyk
             </h1>
             <div className='flex w-full justify-end py-10'>
-        <CreateGallery 
+        <CreateItem 
         
             buttonText='+ Jadyly sandyga maglumat goş'
             title='Jadyly sandyga maglumat goş'
             onSubmit={createGalleryFn}
             fields={[
-                {label: 'Maglumadyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                {label: 'Toplum görnüşi', name: 'type', rules: { required: 'Gözkezilen meýdany dolduryň' } , isSelect: true, 
-                                    options: galleryTypes.data.map(j=>({value: String(j._id), text: String(j.title)})) , isTextArea: false},
+                {label: 'Maglumadyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                {label: 'Toplum görnüşi', name: 'type', rules: { required: 'Gözkezilen meýdany dolduryň' } , 
+                            type:{isSelect: true, options:  galleryTypes.data.map(j=>({value: String(j._id), text: String(j.title)}))}},
+                {label: "Surady saýlaň", name: "picture", 
+                    rules:{ validate: (val) => val?.length > 0 || 'Surat faýl gerek'}, 
+                    type:{ isFile: true,  accept:"image/*" }  },
+                {label: "Faýly saýlaň", name: "file", 
+                    rules:{ validate: (val) => val?.length > 0 || 'Faýl gerek'}, 
+                    type:{ isFile: true,  accept:".docx,.pptx,.pdf" }  },
             ]}
             isPending={isGalleryCreate}
         />
+        
         </div>
         <Table 
             bordered

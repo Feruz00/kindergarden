@@ -32,6 +32,7 @@ import About from './pages/About';
 import TeachersView from './pages/Teachers';
 import Goshmaca from './pages/Goshmaca';
 import ShowTeacher from './pages/ShowTeacher';
+import ShowGallery from './pages/ShowGallery';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -62,7 +63,7 @@ const App: React.FC = () => {
             <Route path='teachers/:id' element={<ShowTeacher />} />
             
             <Route path='gallery' element={ <Gallery /> } />
-            {/* <Route path='gallery/:galleryId' element={ <ShowGallery /> } /> */}
+            <Route path='gallery/:galleryId' element={ <ShowGallery /> } />
             <Route path='login' element={<Login />} />
             <Route path='other' element={ <Goshmaca /> } />
 

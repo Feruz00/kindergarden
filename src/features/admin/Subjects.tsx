@@ -41,8 +41,8 @@ const Subjects = () => {
             title='Täze okuw döret'
             onSubmit={createSubjectFn}
             fields={[
-                {label: 'Okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                {label: 'Okuw hakda beýan', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
+                {label: 'Okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true} },
+                {label: 'Okuw hakda beýan', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 7}},
             ]}
             isPending={isCreateSubject}
         />

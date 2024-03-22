@@ -1,6 +1,7 @@
-import PdfViewer from '../components/PDFViewer'
+
 import { useGetOneGallery } from '../services/useGallery'
 import Loader from '../ui/Loader'
+import PDFViewer from '../ui/PDFViewer'
 // import YouTubePlayer from '../ui/VideoPlayer'
 
 const ShowGallery = () => {
@@ -16,7 +17,8 @@ const ShowGallery = () => {
                 isLoading ? <Loader />
                 :<div>
                 <h1>{gallery.data.title}</h1>
-                <PdfViewer pdfUrl={`${process.env.SERVER}/${gallery.data.url}`} />
+                <PDFViewer url={ `${process.env.SERVER}/${gallery.data.url}` } />
+                {/* <PdfViewer pdfUrl={`${process.env.SERVER}/${gallery.data.url}`} /> */}
             </div>
             }
         </div>

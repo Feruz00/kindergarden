@@ -31,7 +31,6 @@ const Settings = () => {
                     <div className='h-36 w-36 rounded-full flex flex-col justify-center items-center overflow-hidden border'>
                         {user?.url ? <img crossOrigin='anonymous' className='w-full h-full object-cover' src={`${process.env.SERVER}/${user.url}`} /> : <HiOutlineUser className='text-7xl text-gray-500' />}
                     </div>
-                        
                         <UserPhotoUploader 
                             isPending={isUserPhoto}
                             title='Surat ýükle'

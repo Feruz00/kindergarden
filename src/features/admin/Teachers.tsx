@@ -40,9 +40,9 @@ const Teachers = () => {
             title='Täze mugallym goş'
             onSubmit={createTeacherFn}
             fields={[
-                {label: 'Mugallymyň ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                {label: 'Mugallymyň wezipesi', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                {label: 'Mugallym hakda', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
+                {label: 'Mugallymyň ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true}  },
+                {label: 'Mugallymyň wezipesi', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true}  },
+                {label: 'Mugallym hakda', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 7}},
             ]}
             isPending={isTeacherCreate}
         />

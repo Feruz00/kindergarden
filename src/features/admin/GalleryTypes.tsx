@@ -38,9 +38,9 @@ const GalleryTypes = () => {
             buttonText='+ Täze toplum goş'
             title='Täze toplum goş'
             onSubmit={createGalleryTypeFn}
-            noFile={true}
+            
             fields={[
-                {label: 'Ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false }
+                {label: 'Ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true} }
             ]}
             isPending={isCreateGalleryType}
         />

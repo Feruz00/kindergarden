@@ -40,9 +40,9 @@ const Reviews = () => {
             title='Täze gyzyklanma goş'
             onSubmit={createReviewFn}
             fields={[
-                {label: 'Ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                {label: 'Beýany', name: 'review', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
-                {label: 'Hünäri', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
+                {label: 'Ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                {label: 'Beýany', name: 'review', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 6}},
+                {label: 'Hünäri', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
             ]}
             isPending={isCreateReview}
         />
