@@ -1,78 +1,66 @@
-import $ from "jquery";
-import "turn.js";
-import pdfjsLib from "pdfjs-dist";
-import Turn from "./Turn";
-import { useEffect, useState } from "react";
+import { useState, useRef, useEffect } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
+import HTMLFlipBook from 'react-pageflip';
+import PageComponent from './PageComponent';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
-const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-const options = {
-  width: 800,
-  height: 600,
-  autoCenter: true,
-  display: "double",
-  acceleration: true,
-  elevation: 50,
-  gradients: !isTouch,
-  // when: {
-  //   turned: function (e, page) {
-  //     console.log("Current view: ", $(this).turn("view"));
-  //   }
-  // }
-};
-
-
-interface PDFinterface {
-  url: string;
+interface PDFViewerProps {
+  pdfUrl: string;
 }
 
-const PDFViewer: React.FC<PDFinterface> = ({ url }) => {
-  const pages = [url];
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-  const [images, setImages] = useState<string[]>([]);
+function PDFViewer({ pdfUrl }: PDFViewerProps) {
+  const [numPages, setNumPages] = useState<number>(0);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const flipBookRef = useRef<any>(null);
 
-  useEffect(() => {
-    const fetchAndRenderPages = async () => {
-      const imageUrls: string[] = [];
-      for (const page of pages) {
-        const imageData = await fetchPdfPage(page);
-        imageUrls.push(imageData);
-      }
-      setImages(imageUrls);
-    };
-
-    fetchAndRenderPages();
-  }, []);
-
-  const fetchPdfPage = async (url: string) => {
-    const loadingTask = pdfjsLib.getDocument(url);
-    const pdf = await loadingTask.promise;
-    const page = await pdf.getPage(1); // Fetch the first page of the PDF
-    const viewport = page.getViewport({ scale: 1 });
-    const canvas = document.createElement("canvas");
-    const canvasContext = canvas.getContext("2d");
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderContext = {
-      canvasContext,
-      viewport,
-    };
-    // @ts-ignore
-    await page.render(renderContext).promise;
-    const imageUrl = canvas.toDataURL("image/jpeg");
-    return imageUrl;
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages)
+   
   };
+  useEffect(() => {
+    if (flipBookRef.current) {
+      flipBookRef.current.pageFlip().on("flip", (e: { data: number }) => {
+            setPageNumber(e.data + 1);
+            console.log("geldim")
+        });
+    }
+}, [flipBookRef]);
 
   return (
-    <Turn options={options} className="mx-auto">
-      {images.map((image, index) => (
-        <div key={index} className="page">
-          <img src={image} alt="" className="max-w-full h-full" />
-        </div>
-      ))}
-    </Turn>
+    <div className='flex items-center justify-center py-10 relative h-screen overflow-hidden'>
+      {/* @ts-ignore */}
+        <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} >
+          {/* @ts-ignore */}
+          <HTMLFlipBook
+            width={550}
+            height={733}
+            
+            maxShadowOpacity={0.5}
+            mobileScrollSupport={true}
+            ref={flipBookRef}
+            // className="w-fu"
+            startPage={pageNumber}
+            // flippingTime={1000}
+            usePortrait={false}
+            startZIndex={0}
+            onFlip={(e: { data: number }) => {
+              setPageNumber(e.data + 1);
+              // console.log("geldim")
+          }}
+          >
+           {[...Array(numPages)].map((_, index) => (
+            <PageComponent key={`page-${index}`} number={index + 1}>
+              <Page pageNumber={pageNumber} className="page bg-white" />
+            </PageComponent>
+          ))} 
+          
+          </HTMLFlipBook>
+            </Document>
+        
+    </div>
   );
-};
+}
 
 export default PDFViewer;

@@ -16,8 +16,9 @@ const ShowGallery = () => {
             {
                 isLoading ? <Loader />
                 :<div>
-                <h1>{gallery.data.title}</h1>
-                <PDFViewer url={ `${process.env.SERVER}/${gallery.data.url}` } />
+                {/* <h1>{gallery.data.title}</h1> */}
+                {/* <iframe src={`${process.env.SERVER}/${gallery.data.url}`} width="800" height="600" title="PDF Viewer" /> */}
+                <PDFViewer pdfUrl={ `${process.env.SERVER}/${gallery.data.url}` } />
                 {/* <PdfViewer pdfUrl={`${process.env.SERVER}/${gallery.data.url}`} /> */}
             </div>
             }
