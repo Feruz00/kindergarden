@@ -33,6 +33,7 @@ import TeachersView from './pages/Teachers';
 import Goshmaca from './pages/Goshmaca';
 import ShowTeacher from './pages/ShowTeacher';
 import ShowGallery from './pages/ShowGallery';
+import Contest from './features/admin/Contest';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -82,7 +83,7 @@ const App: React.FC = () => {
               
               <Route path='gallery' element={ <GalleryAdmin />} />
               <Route path='settings' element={ <Settings /> } />
-              
+              <Route path='contest' element={ <Contest /> } />
               
             </Route>  
           {/* <Route path='pdf' element={<Flipbook pdfUrl={Pdf} />} /> */}

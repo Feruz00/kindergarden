@@ -22,7 +22,7 @@ const Sidebar = () => {
                 {value:'Öz okuwlarymyz', url: 'educations'}, 
                 {value: 'Toplumlar', url: 'types'},
                 {value: 'Jadyly sandyk', url: 'gallery'},
-
+                {value: 'Bäsleşikler', url: 'contest'},
                 {value: 'Sazlama', url: 'settings'},
             
             ]

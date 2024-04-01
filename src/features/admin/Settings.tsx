@@ -5,6 +5,7 @@ import { useChangeInfo, useChangePassword, useUploadPhoto } from '../../services
 import { useEffect } from 'react'
 import UserPhotoUploader from '../../ui/UserPhotoUploader'
 import EditUserInfo from '../../ui/EditUserInfo'
+import Participants from '../../components/Participants'
 
 const Settings = () => {
     const {user} = User()
@@ -16,7 +17,7 @@ const Settings = () => {
     },[])
 
   return (
-    <div className='w-full px-10 flex justify-center'>
+    <div className='w-full px-10 flex justify-center items-center  flex-col gap-10'>
         <div className='flex flex-col w-1/2 gap-9'>
         <h1 className="text-green-700 font-semibold text-xl text-center  px-2
                 relative
@@ -77,6 +78,7 @@ const Settings = () => {
                 </div>
             </div>
         </div>
+        <Participants />
     </div>
   )
 }
