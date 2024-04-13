@@ -61,6 +61,8 @@ export function useCreateGalleryType(){
     
     const queryClient = useQueryClient()
     // const {id} = useParams()
+
+    // console.log(data)
     const {isPending, mutate: createGalleryTypeFn } = useMutation({
         mutationFn: (data:any) => createGalleryTypes( data),
         onSuccess: ()=>{

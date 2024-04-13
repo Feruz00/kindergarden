@@ -62,7 +62,6 @@ const GalleryTypes = () => {
                             defaultValues={_}
                             fields={[
                                 {label: 'Ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
-                                
                             ]}
                             id={p}
                             isPending={isGalleryTypeInfo}

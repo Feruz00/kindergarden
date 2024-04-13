@@ -73,9 +73,11 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
                 });
             }
             else {
+                // console.log(value)
                 formData.append(key, value as string);
             }
         });
+        // console.log(data)
         onSubmit(formData)
         handleClose();
     };

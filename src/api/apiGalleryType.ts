@@ -25,6 +25,7 @@ const deleteGalleryTypes = (d:string)=>{
 }
 
 const updateGalleryTypes = (d:string, q:any)=>{
+    // console.log()
     return new Promise( async (resolve, reject)=>{
         try {
             const res = await axios.put(`${server}/api/galtype/${d}`, q, {withCredentials:true, });
@@ -35,9 +36,10 @@ const updateGalleryTypes = (d:string, q:any)=>{
     } )
 }
 const createGalleryTypes = (d:any)=>{
+    // console.log(d.get('title'))
     return new Promise( async (resolve, reject)=>{
         try {
-            const res = await axios.post(`${server}/api/galtype/`, d, {withCredentials:true});
+            const res = await axios.post(`${server}/api/galtype/`, d, {withCredentials:true, headers: { "Content-Type": "multipart/form-data" }});
             resolve(res.data);
         } catch (err) {
             reject(err);
