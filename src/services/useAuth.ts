@@ -11,7 +11,7 @@ export interface UserData {
 
 export function useRegister(){
     const {mutate: register, isPending} = useMutation({
-        mutationKey: ['register'],
+        mutationKey: ['user'],
         mutationFn: registerApi,
         onSuccess: ()=>{
             toast.success("Ulanyjy döredildi")
@@ -33,7 +33,7 @@ export function useLogin(){
         onSuccess: (user)=>{
             // console.log(user)
             queryClient.setQueryData(['user'],user)
-            
+            // console.log(user)
             navigate('/admin', {replace: true})
 
         },
@@ -64,6 +64,9 @@ export const useLogout = ()=>{
         mutationFn: logoutApi,
         onSuccess: ()=>{
             navigate('/', {replace: true})
+            // queryClient.
+            // @ts-ignore
+            queryClient.setQueryData(['user'],null)
             queryClient.removeQueries()
         }
     })
@@ -113,7 +116,7 @@ export const useUploadPhoto = ()=>{
         onSuccess: ()=>{
             toast.success('Profil suratyňyz ýüklenildi')
             queryClient.invalidateQueries({
-                queryKey: ['user']
+                queryKey: ['user', 'users']
             })
 
         },

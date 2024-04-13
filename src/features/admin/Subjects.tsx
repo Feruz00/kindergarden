@@ -1,6 +1,6 @@
 
 import Loader from '../../ui/Loader'
-import {Popconfirm, Table} from 'antd' 
+import {Image, Popconfirm, Table} from 'antd' 
 import {  RxTrash } from 'react-icons/rx'
 import { useEffect } from 'react'
 import { useCreateSubject, useDeleteSubject, useGetSubjects, useUpdatePhotoSubject, useUpdateSubjectInfo } from '../../services/useSubjects'
@@ -52,7 +52,7 @@ const Subjects = () => {
             dataSource={subjects.data.map(i=>({...i, key:i._id}))}
             columns={[
                 {title: 'Degişli okuwdan surat parçasy', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-60 h-60 flex items-center justify-center'>
-                    <img crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
+                    <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
                 </div> },
                 {title: 'Okuwyň ady', dataIndex: 'title', key: 'title', width: 'w-[10rem]'},
                 {title: 'Okuw hakda beýan',  dataIndex: 'description', key: 'description', width:' w-[17rem]  '},
@@ -65,8 +65,8 @@ const Subjects = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Okuw hakda beýan', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
+                                {label: 'Okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Okuw hakda beýan', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 10}},
                             ]}
                             id={p}
                             isPending={isSubjectInfo}

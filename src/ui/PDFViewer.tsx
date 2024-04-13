@@ -51,9 +51,10 @@ function PDFViewer({ pdfUrl }: PDFViewerProps) {
           }}
           >
            {[...Array(numPages)].map((_, index) => (
-            <PageComponent key={`page-${index}`} number={index + 1}>
-              <Page pageNumber={pageNumber} className="page bg-white" />
-            </PageComponent>
+              <PageComponent key={`page-${index}`} number={index + 1}>
+                <Page pageNumber={pageNumber-1} className="page bg-white" />
+              </PageComponent>
+          
           ))} 
           
           </HTMLFlipBook>

@@ -44,10 +44,26 @@ const updateUser = (d:string, q:any)=>{
         }
     } )
 }
-const createUser = (d:FormData)=>{
+const resetPassword = (d:string, q:any)=>{
     return new Promise( async (resolve, reject)=>{
         try {
-            const res = await axios.post(`${server}/api/users/`, d, {withCredentials:true, });
+            const res = await axios.put(`${server}/api/users/${d}`, q, {withCredentials:true, });
+            resolve(res.data);
+        } catch (err) {
+            reject(err);
+        }
+    } )
+}
+const createUser = (d:FormData)=>{
+    console.log(d.get('fullName'))
+    return new Promise( async (resolve, reject)=>{
+        try {
+            const res = await axios.post(`${server}/api/users`, d, {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
             resolve(res.data);
         } catch (err) {
             reject(err);
@@ -56,4 +72,4 @@ const createUser = (d:FormData)=>{
 }
 
 
-export {createUser, getUsers, updateUser, deleteUser,getUser }
+export {createUser, getUsers, updateUser, deleteUser,getUser,resetPassword }

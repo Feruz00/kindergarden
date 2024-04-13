@@ -1,8 +1,19 @@
-import { Input, Modal, Select } from 'antd';
+import {  Input, Modal, Select, Switch } from 'antd';
 import { useState } from 'react';
 import { Controller,  useForm } from 'react-hook-form';
 import FileUploader from './FileUploader';
+import ListInput from './ListItems';
 
+interface SwitchProp{
+    isSwitch: boolean
+}
+interface ListProp{
+    isList: boolean
+}
+interface ListCheckProp{
+    id:string;
+    name:string
+}
 interface TextAreaProp{
     row: number;
     isTextArea: boolean;
@@ -18,8 +29,10 @@ interface FileProp{
 interface InputProp{
     isInput: boolean;
 }
-
-type FieldProp = TextAreaProp | SelectProp | FileProp | InputProp;
+interface PasswordProp{
+    isPassword: boolean;
+}
+type FieldProp = TextAreaProp | SelectProp | FileProp | InputProp | PasswordProp | SwitchProp | ListProp;
 type ValidationRule = {
     validate: (val: any) => boolean | string;
 };
@@ -40,23 +53,29 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
     // @ts-ignore
     const { reset, handleSubmit, control, register, formState: { errors }, watch } = useForm<T>();
     const [open, setOpen] = useState(false);
-  
+    // @ts-ignore
+    
+
     const handleClose = () => {
         setOpen(false);
         reset();
     };
-  
+ 
     const handleFormSubmit = (data: T & { [key: string]: FileList }) => {
         const formData = new FormData();
-        
         Object.entries(data).forEach(([key, value]) => {
             if (value instanceof FileList) {
-                formData.append(key, value[0]);
-            } else {
+                formData.append(key, value[0])
+            } 
+            else if (Array.isArray(value)) {
+                (value as ListCheckProp[]).forEach((item: ListCheckProp, index:number) => {
+                        if(item.name) formData.append(`${key}[${index}]`, item.name);
+                });
+            }
+            else {
                 formData.append(key, value as string);
             }
         });
-    
         onSubmit(formData)
         handleClose();
     };
@@ -87,6 +106,10 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
                         />
                            
                     ):
+                    (i.type as ListProp)?.isList ? (
+                        //@ts-ignore
+                        <ListInput name={i.name as string} control={control} watch={watch} />
+                    ):
                     (
                         <Controller
                             name={i.name as string}
@@ -102,6 +125,8 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
                                         ))}
                                     </Select>:
                                 (i.type as TextAreaProp)?.isTextArea ? <Input.TextArea rows={(i.type as TextAreaProp).row} className='col-span-6' {...field} />:
+                                (i.type as PasswordProp)?.isPassword ? <Input.Password className='col-span-6' {...field} /> : 
+                                (i.type as SwitchProp)?.isSwitch ? <Switch {...field} />:
                                 <Input className='col-span-6' {...field} />
 
                             )}

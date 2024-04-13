@@ -1,7 +1,7 @@
 // import { Education } from './useEducation';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { createUser, deleteUser, getUser, getUsers, updateUser } from "../api/apiUsers";
+import { createUser, deleteUser, getUser, getUsers, resetPassword, updateUser } from "../api/apiUsers";
 export type User = {
     fullName?: string;
     _id:string;
@@ -72,6 +72,24 @@ export function useUpdateUser(){
     return {isPending, updateUserFn}
 }
 
+export function useResetPassword(){
+    
+    const queryClient = useQueryClient()
+    // const {id} = useParams()
+    const {isPending, mutate: resetPasswordFn } = useMutation({
+        mutationFn: ({ id, data }: { id: string, data: {password: string} }) => resetPassword(id, data),
+        onSuccess: ()=>{
+            toast.success('Üstünlikli sazlanyldy')
+            queryClient.invalidateQueries({
+                queryKey: ['users']
+            })
+        },
+        onError: ()=>{
+            toast.error('Näsazlyklar ýüz berdi')
+        }
+    })
+    return {isPending, resetPasswordFn}
+}
 
 export function useCreateUser(){
     

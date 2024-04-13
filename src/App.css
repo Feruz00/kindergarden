@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+.react-pdf__Document {
+  display: inline-block;
+  height: 80%;
+}
+

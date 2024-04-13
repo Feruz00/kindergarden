@@ -9,10 +9,10 @@ const PageComponent:ForwardRefRenderFunction<HTMLDivElement, PageProps> = (props
     return (
         <div className="page h-full flex items-center" ref={ref}>
             <div className="page-content">
-                {/* <h2 className="page-header">Page header - {props.number}</h2> */}
-                {/* <div className="page-image"></div> */}
+                <h2 className="page-header">Page header - {props.number}</h2>
+                <div className="page-image"></div>
                 <div className="page-text">{props.children}</div>
-                {/* <div className="page-footer">{props.number + 1}</div> */}
+                <div className="page-footer">{props.number + 1}</div>
             </div>
         </div>
     );

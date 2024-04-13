@@ -1,7 +1,7 @@
 
 import {  useCreateEducation, useDeleteEducation, useGetEducations, useUpdateEducation, useUpdatePhotoEduction } from '../../services/useEducation'
 import Loader from '../../ui/Loader'
-import {Popconfirm, Table} from 'antd' 
+import {Image, Popconfirm, Table} from 'antd' 
 import {  RxTrash } from 'react-icons/rx'
 import { useEffect } from 'react'
 import EditModal from '../../ui/Editable'
@@ -54,7 +54,7 @@ const Educations = () => {
             dataSource={educations.data.map(i=>({...i, key:i._id}))}
             columns={[
                 {title: 'Gyzyklanma suraty', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-60 h-60 flex items-center justify-center'>
-                    <img crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
+                    <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
                 </div> },
                 {title: 'Ýörite okuwyň ady', dataIndex: 'title', key: 'title', width: 'w-[10rem]'},
                 {title: 'Okuwyň mazmuny',  dataIndex: 'description', key: 'description', width:' w-[17rem]  '},
@@ -68,9 +68,9 @@ const Educations = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Ýörite okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Okuwyň mazmuny', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
-                                {label: 'Web salgysy', name: 'link', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
+                                {label: 'Ýörite okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Okuwyň mazmuny', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 7}},
+                                {label: 'Web salgysy', name: 'link', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                             ]}
                             id={p}
                             isPending={isEducationInfo}

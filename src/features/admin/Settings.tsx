@@ -5,7 +5,7 @@ import { useChangeInfo, useChangePassword, useUploadPhoto } from '../../services
 import { useEffect } from 'react'
 import UserPhotoUploader from '../../ui/UserPhotoUploader'
 import EditUserInfo from '../../ui/EditUserInfo'
-import Participants from '../../components/Participants'
+// import Participants from '../../components/Participants'
 
 const Settings = () => {
     const {user} = User()
@@ -78,7 +78,7 @@ const Settings = () => {
                 </div>
             </div>
         </div>
-        <Participants />
+        {/* <Participants /> */}
     </div>
   )
 }

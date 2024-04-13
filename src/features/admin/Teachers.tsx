@@ -1,6 +1,6 @@
 
 import Loader from '../../ui/Loader'
-import {Popconfirm, Table} from 'antd' 
+import {Image, Popconfirm, Table} from 'antd' 
 import {  RxTrash } from 'react-icons/rx'
 import { useEffect } from 'react'
 import { useCreateTeacher, useDeleteTeacher, useGetTeachers, useUpdatePhotoTeacher, useUpdateTeacherInfo } from '../../services/useTeachers'
@@ -52,7 +52,7 @@ const Teachers = () => {
             dataSource={teachers.data.map(i=>({...i, key:i._id}))}
             columns={[
                 {title: 'Mugallymyň suraty', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-60 h-60 flex items-center justify-center'>
-                    <img crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
+                    <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
                 </div> },
                 {title: 'Mugallymyň ady', dataIndex: 'name', key: 'name', width: 'w-[10rem]'},
                 {title: 'Mugallymyň gazanan üstünlikleri',  dataIndex: 'description', key: 'description', width:' w-[17rem]  '},
@@ -67,9 +67,9 @@ const Teachers = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Mugallymyň ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Mugallymyň wezipesi', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Mugallym hakda', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
+                                {label: 'Mugallymyň ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Mugallymyň wezipesi', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Mugallym hakda', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 10}},
                             ]}
                             id={p}
                             isPending={isTeacherInfo}

@@ -61,7 +61,7 @@ const GalleryTypes = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
+                                {label: 'Ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                                 
                             ]}
                             id={p}

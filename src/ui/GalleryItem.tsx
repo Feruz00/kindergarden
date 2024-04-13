@@ -33,7 +33,7 @@ const GalleryItem:React.FC<Props> = (i) => {
     return (
     <div
         ref={ref}
-    className={`w-1/4 xl:w-1/2 shadow px-3 rounded-xl py-4 h-[30rem] flex flex-col items-center justify-center gap-5
+    className={`w-1/4 xl:w-1/2 shadow px-3 rounded-xl py-4 h-[50rem] flex flex-col items-center justify-center gap-5
     
         transition-all duration-500
         ${inView ? 'translate-x-0 translate-y-0 opacity-100': 'opacity-0 '+i.design}

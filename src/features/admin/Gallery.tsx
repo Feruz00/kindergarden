@@ -1,6 +1,6 @@
 
 import Loader from '../../ui/Loader'
-import {Popconfirm, Table} from 'antd' 
+import {Image, Popconfirm, Table} from 'antd' 
 import {  RxTrash } from 'react-icons/rx'
 import { useEffect } from 'react'
 import { useCreateGallery, useDeleteGallery, useGetGallery, useUpdateGallery, useUpdatePhotoGallery } from '../../services/useGallery'
@@ -62,7 +62,7 @@ const GalleryAdmin = () => {
             dataSource={galleries.data.map(i=>({...i, key:i._id}))}
             columns={[
                 {title: 'Suraty', dataIndex: 'picture', key: 'picture', render: (i, _)=>  <div className=' w-28 h-28 flex items-center justify-center '>
-                    <img crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.picture}`}  className='object-cover ' />
+                    <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.picture}`}  className='object-cover ' />
                 </div> },
                 {title: 'Maglumadyň ady', dataIndex: 'title', key: 'title', width: 'w-[10rem]'},
                 {title: 'Toplum görnüşi',  dataIndex: 'type', key: 'type', render: (p)=> <p>{p.title}</p> ,
@@ -82,9 +82,9 @@ const GalleryAdmin = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Maglumadyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Toplum görnüşi', name: 'type', rules: { required: 'Gözkezilen meýdany dolduryň' } , isSelect: true, 
-                                    options: galleryTypes.data.map(j=>({value: String(j._id), text: String(j.title)})) , isTextArea: false},
+                                {label: 'Maglumadyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Toplum görnüşi', name: 'type', rules: { required: 'Gözkezilen meýdany dolduryň' } , 
+                                type: {isSelect: true, options: galleryTypes.data.map(j=>({value: String(j._id), text: String(j.title)}))} }, 
                                 // {label: 'Web salgysy', name: 'link', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
                             ]}
                             id={p}

@@ -1,6 +1,8 @@
 
 import { useGetOneGallery } from '../services/useGallery'
+// import Flipbook from '../ui/Flipbook'
 import Loader from '../ui/Loader'
+import PDFReader from '../ui/PDFReader'
 import PDFViewer from '../ui/PDFViewer'
 // import YouTubePlayer from '../ui/VideoPlayer'
 
@@ -18,7 +20,9 @@ const ShowGallery = () => {
                 :<div>
                 {/* <h1>{gallery.data.title}</h1> */}
                 {/* <iframe src={`${process.env.SERVER}/${gallery.data.url}`} width="800" height="600" title="PDF Viewer" /> */}
-                <PDFViewer pdfUrl={ `${process.env.SERVER}/${gallery.data.url}` } />
+                {/* <PDFViewer pdfUrl={ `${process.env.SERVER}/${gallery.data.url}` } /> */}
+                <PDFReader pdfUrl={ `${process.env.SERVER}/${gallery.data.url}` } />
+                {/* <Flipbook pdfUrl={ `${process.env.SERVER}/${gallery.data.url}` } /> */}
                 {/* <PdfViewer pdfUrl={`${process.env.SERVER}/${gallery.data.url}`} /> */}
             </div>
             }

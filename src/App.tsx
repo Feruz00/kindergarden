@@ -33,7 +33,10 @@ import TeachersView from './pages/Teachers';
 import Goshmaca from './pages/Goshmaca';
 import ShowTeacher from './pages/ShowTeacher';
 import ShowGallery from './pages/ShowGallery';
-import Contest from './features/admin/Contest';
+// import Contest from './features/admin/Contest';
+import Participants from './components/Participants';
+import AboutUs from './components/AboutUs';
+import ShowAbout from './features/admin/About';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -75,6 +78,8 @@ const App: React.FC = () => {
             </ProtectedRoute>}>
               <Route index element={ <Navigate to='ab' replace />  } />
               <Route path='ab' element={ <Educations /> } />
+              <Route path='about-us' element={ <ShowAbout /> } />
+              
               <Route path='teachers' element={ <Teachers/> } />
 
               <Route path='reviews' element={ <Reviews />  } />
@@ -83,7 +88,7 @@ const App: React.FC = () => {
               
               <Route path='gallery' element={ <GalleryAdmin />} />
               <Route path='settings' element={ <Settings /> } />
-              <Route path='contest' element={ <Contest /> } />
+              <Route path='user-add' element={ <Participants /> } />
               
             </Route>  
           {/* <Route path='pdf' element={<Flipbook pdfUrl={Pdf} />} /> */}

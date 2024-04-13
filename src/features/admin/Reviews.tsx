@@ -1,6 +1,6 @@
 
 import Loader from '../../ui/Loader'
-import {Popconfirm, Table} from 'antd' 
+import {Image, Popconfirm, Table} from 'antd' 
 import {  RxTrash } from 'react-icons/rx'
 import { useEffect } from 'react'
 import { useCreateReview, useDeleteReview, useGetReviews, useUpdatePhotoReview, useUpdateReviewInfo } from '../../services/useReviews'
@@ -52,7 +52,7 @@ const Reviews = () => {
             dataSource={reviews.data.map(i=>({...i, key:i._id}))}
             columns={[
                 {title: 'Öz pikirini aýdyjynyň suraty', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-60 h-60 flex items-center justify-center'>
-                    <img crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
+                    <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover' />
                 </div> },
                 {title: 'Öz pikirini aýdyjynyň ady', dataIndex: 'name', key: 'title', width: 'w-[10rem]'},
                 {title: 'Pikirleri, gyzyklanmalary',  dataIndex: 'review', key: 'description', width:' w-[17rem]  '},
@@ -66,9 +66,9 @@ const Reviews = () => {
                             title='Maglumatlary sazla'
                             defaultValues={_}
                             fields={[
-                                {label: 'Ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
-                                {label: 'Beýany', name: 'review', rules: { required: 'Gözkezilen meýdany dolduryň' } , row: 6, isTextArea: true},
-                                {label: 'Hünäri', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, isTextArea: false },
+                                {label: 'Ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                                {label: 'Beýany', name: 'review', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 9}},
+                                {label: 'Hünäri', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                             ]}
                             id={p}
                             isPending={isReviewInfo}
