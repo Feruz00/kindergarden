@@ -81,7 +81,7 @@ export const useChangeInfo = ()=>{
         mutationFn: changeInfoApi,
         onSuccess: (user)=>{
             console.log(user)
-            queryClient.setQueryData(['profile'],user)
+            queryClient.setQueryData(['user'],user)
             toast.success('Maglumatlaryňyz üstünlikli üýtgedildi')
             queryClient.invalidateQueries({
                 queryKey: [  'user' ]

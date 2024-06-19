@@ -43,6 +43,7 @@ const Teachers = () => {
                 {label: 'Mugallymyň ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true}  },
                 {label: 'Mugallymyň wezipesi', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true}  },
                 {label: 'Mugallym hakda', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 7}},
+                {label: "Surat", name:"file", rules: { validate: (val) => val?.length > 0 || 'Surat faýl gerek' }, type:{isFile: true, accept: 'image/*'}}
             ]}
             isPending={isTeacherCreate}
         />

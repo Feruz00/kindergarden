@@ -39,7 +39,7 @@ const updateAboutInfo = (d:string, q:any)=>{
 const updateAboutPhotos = ( q:string, d:FormData)=>{
     return new Promise( async (resolve, reject)=>{
         try {
-            const res = await axios.put(`${server}/api/about/${q}`, d, {withCredentials:true, 
+            const res = await axios.patch(`${server}/api/about/${q}`, d, {withCredentials:true, 
                 headers: { "Content-Type": "multipart/form-data" }
             });
             resolve(res.data);

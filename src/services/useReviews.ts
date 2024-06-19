@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createReview, deleteReview, getReviews, updatePhotoReview, updateReviewInfo } from "../api/apiReviews";
+import { createReview, deleteReview, getReviews, updatePhotoReview, updateReviewInfo } from "../api/apireviews";
 import toast from "react-hot-toast";
 
 

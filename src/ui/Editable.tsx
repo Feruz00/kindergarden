@@ -3,7 +3,6 @@ import { Input, Modal, Select } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
 import { RxPencil2 } from 'react-icons/rx';
 import ListInput from './ListItems';
-import { ignore } from 'antd/es/theme/useToken';
 
 interface TextAreaProp{
     row: number;

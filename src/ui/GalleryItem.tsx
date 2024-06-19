@@ -16,6 +16,7 @@ const GalleryItem:React.FC<Props> = (i) => {
     const {ref, inView } = useInView({
         threshold: 0.5
     })
+    console.log("item icinde", i._id)
     const handleDownload = (fileUrl: string, fileName: string) => {
         fetch(`${process.env.SERVER}/${fileUrl}`)
             .then(response => response.blob())
@@ -41,7 +42,7 @@ const GalleryItem:React.FC<Props> = (i) => {
         <img src={`${process.env.SERVER}/${i.picture}`} className=' h-5/6 object-cover' crossOrigin='anonymous' alt={i.title} />
         <button onClick={()=>handleDownload(i.url, i.title)} className='px-16 py-2 bg-green-600 text-white rounded-full hover:bg-green-500 transition-all duration-300'>Ýükle</button>
 
-        <Link to={i._id} className='px-16 py-2 bg-green-600 text-white rounded-full hover:bg-green-500 transition-all duration-300'> Okamak </Link>
+        <Link to={i._id.toString()} className='px-16 py-2 bg-green-600 text-white rounded-full hover:bg-green-500 transition-all duration-300'> Okamak </Link>
     </div>
   )
 }

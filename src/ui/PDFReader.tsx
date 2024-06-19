@@ -1,8 +1,8 @@
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Document, Page, pdfjs } from "react-pdf";
-import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
+// import { AiOutlineZoomIn, AiOutlineZoomOut } from "react-icons/ai";
+// import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import HTMLFlipBook from 'react-pageflip';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -11,8 +11,8 @@ interface PDFViewerProps {
   }
 const PDFReader:React.FC<PDFViewerProps> = ({pdfUrl}) => {
     const [numPages, setNumPages] = useState<null|number>(null);
-    const [pageNumber, setPageNumber] = useState(1);
-    const [pageScale, setPageScale] = useState(0.90);
+    // const [pageNumber, setPageNumber] = useState(1);
+    // const [pageScale, setPageScale] = useState(0.90);
 
     const onDocumentLoadSuccess = ({ numPages }: {numPages:number}) => {
         setNumPages(numPages);
@@ -61,7 +61,8 @@ const PDFReader:React.FC<PDFViewerProps> = ({pdfUrl}) => {
         <div className="w-screen flex flex-col items-center overflow-x-hidden">
             <div className='mt-3 md:mt-5 flex flex-col justify-evenly gap-3 h-full'>
                 <div className='w-screen h-full flex justify-center'>
-                    <Document className='w-full md:w-max flex justify-center items-center'  file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
+                    <Document className='w-full md:w-max flex justify-center items-center'  file={pdfUrl} 
+                    onLoadSuccess={onDocumentLoadSuccess}>
                         {/* @ts-ignore */}
                     <HTMLFlipBook width={500} height={707} className='flex justify-center items-center' >
                         {pagesList()}

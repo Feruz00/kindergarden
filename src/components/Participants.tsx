@@ -42,8 +42,8 @@ const Participants = () => {
                 {label: 'Ulanyjyň ady', name: 'fullName', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                 {label: 'Ulanyjyň logini', name: 'username', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                 {label: 'Ulanyjyň açar sözüni', name: 'password', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isPassword: true} },
-                {label: 'Derejesi', name: 'role', rules: { required: 'Gözkezilen meýdany dolduryň' } , 
-                            type:{isSelect: true, options:  ['admin', 'member'].map(j=>({value: String(j), text: String(j)}))}},
+                // {label: 'Derejesi', name: 'role', rules: { required: 'Gözkezilen meýdany dolduryň' } , 
+                //             type:{isSelect: true, options:  ['admin', 'member'].map(j=>({value: String(j), text: String(j)}))}},
                 
                 {label: 'Maglumat', name: 'bio', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isTextArea: true, row:6 } },
             ]}
@@ -55,20 +55,20 @@ const Participants = () => {
               bordered
               dataSource={users.data.map(i=>({...i, key:i._id}))}
               columns={[
-                  {title: 'Gyzyklanma suraty', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-32 h-32 flex items-center justify-center'>
+                  {title: 'Gyzyklanma suraty', dataIndex: 'url', key: 'url', render: (i, _)=>  <div className='w-32 h-32 flex items-center rounded-full justify-center overflow-hidden'>
                     {
-                      i ? <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover w-32 h-32 rounded-full'  /> : 
+                      i ? <Image crossOrigin='anonymous' alt={i} src={`${process.env.SERVER}/${_.url}`}  className='object-cover w-full h-full '  /> : 
                         <Avatar icon={<AiOutlineUser className='text-6xl' />} className='w-24 h-24'  />
                     }
                       
                   </div> },
                   {title: 'Ulanyjynyň logini', dataIndex: 'username', key: 'username', width: 'w-[10rem]'},
                   {title: 'Ulanyjynyň ady',  dataIndex: 'fullName', key: 'fullName', width:' w-[17rem]  '},
-                  {title: 'Ulanyjynyň derejesi',  dataIndex: 'role', key: 'fole', width:' w-[17rem]  ',
-                    filters: ['admin', 'member'].map(i=>({text: i, value: i})),
-                    // @ts-ignore
-                    onFilter: (value: string, record) => record.role.includes(value),
-                  },
+                  // {title: 'Ulanyjynyň derejesi',  dataIndex: 'role', key: 'fole', width:' w-[17rem]  ',
+                  //   filters: ['admin', 'member'].map(i=>({text: i, value: i})),
+                  //   // @ts-ignore
+                  //   onFilter: (value: string, record) => record.role.includes(value),
+                  // },
                   {title: 'Maglumat', dataIndex: 'bio', key: 'bio'},
 
                   {

@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter,  Route, Routes } from 'react-router-dom';
 import AppLayout from './components/AppLayout';
 import Dashboard from './pages/Dashboard';
 import "slick-carousel/slick/slick.css";
@@ -35,8 +35,12 @@ import ShowTeacher from './pages/ShowTeacher';
 import ShowGallery from './pages/ShowGallery';
 // import Contest from './features/admin/Contest';
 import Participants from './components/Participants';
-import AboutUs from './components/AboutUs';
+// import AboutUs from './components/AboutUs';
 import ShowAbout from './features/admin/About';
+import DashboardAdmin from './features/admin/DashboardAdmin';
+import Address from './features/admin/Address';
+// import Address from './features/admin/Address';
+// import Footer from './components/Footer';
 
 const queryClient = new QueryClient({
   defaultOptions:{
@@ -76,7 +80,7 @@ const App: React.FC = () => {
           <Route path='admin' element={<ProtectedRoute>
               <AdminAppLayout />
             </ProtectedRoute>}>
-              <Route index element={ <Navigate to='ab' replace />  } />
+              <Route index element={ <DashboardAdmin/>  } />
               <Route path='ab' element={ <Educations /> } />
               <Route path='about-us' element={ <ShowAbout /> } />
               
@@ -89,6 +93,8 @@ const App: React.FC = () => {
               <Route path='gallery' element={ <GalleryAdmin />} />
               <Route path='settings' element={ <Settings /> } />
               <Route path='user-add' element={ <Participants /> } />
+              <Route path='footer' element={ <Address /> } />
+              
               
             </Route>  
           {/* <Route path='pdf' element={<Flipbook pdfUrl={Pdf} />} /> */}

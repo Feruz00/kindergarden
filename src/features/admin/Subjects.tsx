@@ -43,6 +43,7 @@ const Subjects = () => {
             fields={[
                 {label: 'Okuwyň ady', name: 'title', rules: { required: 'Gözkezilen meýdany dolduryň' }, type:{isInput: true} },
                 {label: 'Okuw hakda beýan', name: 'description', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 7}},
+                {label: "Surat", name:"file", rules: { validate: (val) => val?.length > 0 || 'Surat faýl gerek' }, type:{isFile: true, accept: 'image/*'}}
             ]}
             isPending={isCreateSubject}
         />

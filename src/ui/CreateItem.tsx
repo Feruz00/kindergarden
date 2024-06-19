@@ -14,6 +14,8 @@ interface ListCheckProp{
     id:string;
     name:string
 }
+
+
 interface TextAreaProp{
     row: number;
     isTextArea: boolean;
@@ -32,7 +34,7 @@ interface InputProp{
 interface PasswordProp{
     isPassword: boolean;
 }
-type FieldProp = TextAreaProp | SelectProp | FileProp | InputProp | PasswordProp | SwitchProp | ListProp;
+type FieldProp = TextAreaProp | SelectProp | FileProp | InputProp | PasswordProp | SwitchProp | ListProp ;
 type ValidationRule = {
     validate: (val: any) => boolean | string;
 };
@@ -63,7 +65,9 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
  
     const handleFormSubmit = (data: T & { [key: string]: FileList }) => {
         const formData = new FormData();
+        // console.log(data)
         Object.entries(data).forEach(([key, value]) => {
+            // console.log(key, value)
             if (value instanceof FileList) {
                 formData.append(key, value[0])
             } 
@@ -71,14 +75,18 @@ const CreateItem = <T,>({ onSubmit, title, buttonText, fields }: CreateItemProps
                 (value as ListCheckProp[]).forEach((item: ListCheckProp, index:number) => {
                         if(item.name) formData.append(`${key}[${index}]`, item.name);
                 });
+                
             }
+
             else {
                 // console.log(value)
                 formData.append(key, value as string);
             }
         });
         // console.log(data)
+        // console.log(formData.get('list'))
         onSubmit(formData)
+        reset()
         handleClose();
     };
 

@@ -43,6 +43,7 @@ const Reviews = () => {
                 {label: 'Ady', name: 'name', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
                 {label: 'Beýany', name: 'review', rules: { required: 'Gözkezilen meýdany dolduryň' } , type: {isTextArea: true, row: 6}},
                 {label: 'Hünäri', name: 'job', rules: { required: 'Gözkezilen meýdany dolduryň' }, type: {isInput: true} },
+                {label: "Surat", name:"file", rules: { validate: (val) => val?.length > 0 || 'Surat faýl gerek' }, type:{isFile: true, accept: 'image/*'}}
             ]}
             isPending={isCreateReview}
         />

@@ -6,12 +6,13 @@ import FileUploader from './FileUploader';
 
 interface FormDataType {
   id: string;
+  fileName?: string;
   onSubmit: (data: { id: string; data: FormData }) => void;
   title: string;
   isPending: boolean;
 }
 
-const UpdatePhotoModal: React.FC<FormDataType> = ({ id, onSubmit, title, isPending }) => {
+const UpdatePhotoModal: React.FC<FormDataType> = ({ id, onSubmit, title, isPending, fileName="file" }) => {
     const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     const [open, setOpen] = useState(false);
   
@@ -30,7 +31,7 @@ const UpdatePhotoModal: React.FC<FormDataType> = ({ id, onSubmit, title, isPendi
   
     const handleFormSubmit = async (data: any) => {
         const formData = new FormData();
-        formData.append('file', data.file[0]);
+        formData.append(fileName, data.file[0]);
         onSubmit({ id, data: formData }); // Call onSubmit with the correct format
         handleClose();
     };

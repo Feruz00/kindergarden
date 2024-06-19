@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useLogin } from "../services/useAuth"
 import {useForm} from 'react-hook-form'
 interface Prop{
@@ -18,7 +19,9 @@ const Login = () => {
       }
     })
   }
-
+  useEffect(()=>{
+    document.title = "Login"
+  },[])
   return (
     <div
       className='min-h-[calc(100vh-5rem)] w-full flex flex-col items-center justify-center font-nunito'

@@ -3,11 +3,11 @@ import { useInView } from 'react-intersection-observer';
 
 interface Props{
     title: string, 
-    icon: React.ReactNode | string, 
+    // icon: React.ReactNode | string, 
     description: string, 
     where: string
 }
-const CardView:React.FC<Props> = ({title, icon, description, where = ''}) => {
+const CardView:React.FC<Props> = ({title,  description, where = ''}) => {
     const { ref, inView } = useInView({
         threshold: 0.5, 
     });
@@ -25,7 +25,7 @@ const CardView:React.FC<Props> = ({title, icon, description, where = ''}) => {
             sm:py-3 sm:px-2
             `} ref={ref}>
         <div className='text-4xl text-green-700 sm:text-xl'>
-            {icon}
+            {/* {icon} */}
         </div>
         <div className='flex flex-col gap-2 justify-start px-4'>
             <h2 className='text-2xl font-semibold text-green-600 xl:text-xl sm:text-base'>{title}</h2>

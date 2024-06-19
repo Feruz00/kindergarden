@@ -1,5 +1,5 @@
-import { HiOutlineUserGroup, HiOutlineAcademicCap, HiOutlineSquaresPlus } from 'react-icons/hi2';
-import { AiOutlineAppstore, AiOutlineHdd, AiOutlineSetting } from 'react-icons/ai';
+import { HiOutlineUserGroup, HiOutlineAcademicCap, HiOutlineSquaresPlus, HiMiniHomeModern } from 'react-icons/hi2';
+import {  AiOutlineHdd, AiOutlineSetting } from 'react-icons/ai';
 
 interface ItemProps{
     label: React.ReactNode,
@@ -12,16 +12,29 @@ interface ItemProps{
 
 
 export const items:ItemProps[] = [
+    // {
+    //   key: 'home',
+    //   label: 'Baş sahypa',
+    //   icon: <AiOutlineAppstore />,
+    //   children: [
+    //     { key: 'home1', label: 'Giriş bölümi', url: '' },
+    //     { key: 'home2', label: 'Meýilnamalar', url: 'plans' },
+    //     { key: 'home3', label: 'Okuwlarymyz', url: 'educations' },
+    //   ],
+    // },
     {
-      key: 'home',
+      key: 'dashboard',
       label: 'Baş sahypa',
-      icon: <AiOutlineAppstore />,
-      children: [
-        { key: 'home1', label: 'Giriş bölümi', url: '' },
-        { key: 'home2', label: 'Meýilnamalar', url: 'plans' },
-        { key: 'home3', label: 'Okuwlarymyz', url: 'educations' },
-      ],
+      icon: <HiMiniHomeModern />,
+      url:''
     },
+    {
+      key: 'special',
+      label: 'Ýörite okuwlar',
+      icon: <HiOutlineSquaresPlus />,
+      url:'ab'
+    },
+
     {
       key: 'about-us',
       label: 'Biz barada',
@@ -46,12 +59,7 @@ export const items:ItemProps[] = [
         { key: 'gallery2', label: 'Ýüklenen edebiýatlar', url: 'gallery' },
       ],
     },
-    {
-      key: 'special',
-      label: 'Ýörite okuwlar',
-      icon: <HiOutlineSquaresPlus />,
-      url:'ab'
-    },
+    
     {
       key: 'settings',
       label: 'Sazlamalar',
@@ -59,7 +67,9 @@ export const items:ItemProps[] = [
       children: [
         { key: 'settings1', label: 'Şahsy maglumatlar', url: 'settings' },
         { key: 'settings2', label: 'Ulanyjy goş', url: 'user-add' },
+        { key: 'settings3', label: 'Footer', url: 'footer' },
+     
       ],
-    },
+    }
   ];
   

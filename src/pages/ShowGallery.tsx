@@ -3,7 +3,7 @@ import { useGetOneGallery } from '../services/useGallery'
 // import Flipbook from '../ui/Flipbook'
 import Loader from '../ui/Loader'
 import PDFReader from '../ui/PDFReader'
-import PDFViewer from '../ui/PDFViewer'
+// import PDFViewer from '../ui/PDFViewer'
 // import YouTubePlayer from '../ui/VideoPlayer'
 
 const ShowGallery = () => {

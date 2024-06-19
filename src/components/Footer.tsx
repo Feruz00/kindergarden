@@ -1,9 +1,16 @@
 import { GoLocation } from 'react-icons/go'
 import { MdCall,  MdMailOutline } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-
+import {useGetfooter} from '../services/useFooter'
+import Loader from '../ui/Loader'
 const Footer = () => {
-  return (
+    const {isLoading, footerler} = useGetfooter()
+    if(isLoading){
+        return <div className='w-full h-full flex items-center justify-center'>
+              <Loader />
+          </div>
+      }
+    return (
     <div className='bg-green-900 w-full py-10 flex justify-center items-center font-nunito '>
         <div className='w-[1500px] 2xl:w-full 2xl:px-5' >
             <div className='flex flex-row md:flex-col md:gap-5 md:px-10 justify-between items-start py-4 '>
@@ -12,7 +19,7 @@ const Footer = () => {
                         Mekdebe çenli bilim we terbiýe
                     </Link>
                     <p className='pr-10 text-lg text-zinc-50 md:text-base'>
-                        Çagalary terbiýelemekde hem-de olara bilim bermekde mekdebe çenli çagalar edaralary bilen maşgalanyň, umumybilim edaralarynyň we jemgyýetçilik guramalarynyň sazlaşykly aragatnaşygyny üpjün etmek bolup durýar.
+                        {footerler.data[0]?.content}
                     </p>
                 </div>
                 <div className='flex flex-1 flex-col gap-2 justify-between '>
@@ -22,21 +29,21 @@ const Footer = () => {
                         
                         <div className='text-white'>
                             <h1 className='text-semibold md:text-xl '>Salgymyz </h1>
-                            <p className='md:text-sm'>ş Aşgabat Arçabil şaýoly</p>
+                            <p className='md:text-sm'>{footerler.data[0]?.address}</p>
                         </div>
                     </div>
                     <div className='flex flex-row  text-xl gap-5'>
                         <MdMailOutline  className='text-3xl md:text-2xl text-white font-bold' />
                         <div className='text-white'>
                             <h1 className='text-semibold md:text-xl '>Email </h1>
-                            <p className='md:text-sm'>bakjabag.edu.tm</p>
+                            <p className='md:text-sm'>{footerler.data[0]?.email}</p>
                         </div>
                     </div>
                     <div className='flex flex-row  text-xl gap-5'>
                         <MdCall  className='text-3xl text-white font-bold' />
                         <div className='text-white'>
                             <h1 className='text-semibold md:text-xl '>Telefon belgisi </h1>
-                            <p className='md:text-sm'>94-60-16</p>
+                            <p className='md:text-sm'>{footerler.data[0]?.phoneNumber}</p>
                         </div>
                     </div>
 

@@ -22,7 +22,7 @@ const loginApi = (d:any)=>{
     } )
 }
 
-const getCurrentUserApi = (d:any)=>{
+const getCurrentUserApi = ()=>{
     return new Promise( async (resolve, reject)=>{
         await axios.get(`${server}/api/auth/`,{
             withCredentials: true
